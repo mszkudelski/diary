@@ -8,14 +8,25 @@ export class DiaryEntry implements DiaryEntrySource {
   readonly title: string;
   readonly date: Date;
   readonly content: string;
+
   constructor({ title, date, content }: DiaryEntrySource) {
-    this.title = title;
     this.date = typeof date === 'string' ? new Date(date) : date;
+    this.title = title || 'Thought from day ' + this.getDate();
     this.content = content;
   }
 
   get dateFormatted(): string {
-    return `${this.date.getDate()}-${this.date.getMonth()}-${this.date.getFullYear()}, ${this.date.getHours()}:${this.date.getMinutes()}`;
+    return `${this.getDate()}, ${this.date
+      .getHours()
+      .toString()
+      .padStart(2, '0')}:${this.date
+      .getMinutes()
+      .toString()
+      .padStart(2, '0')}`;
+  }
+
+  private getDate() {
+    return `${this.date.getDate()}-${this.date.getMonth()}-${this.date.getFullYear()}`;
   }
 }
 
