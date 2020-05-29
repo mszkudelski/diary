@@ -49,6 +49,7 @@ test('should set current date as default title', () => {
   expect(newEntryAdded).toHaveBeenCalled();
   const functionCallArg = newEntryAdded.mock.calls[0][0];
   const date = new Date();
-  const expectedTitle = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
-  expect(functionCallArg.title).toContain(expectedTitle);
+  expect(functionCallArg.title).toContain(date.getDate());
+  expect(functionCallArg.title).toContain(date.getMonth());
+  expect(functionCallArg.title).toContain(date.getFullYear());
 });

@@ -26,7 +26,13 @@ export class DiaryEntry implements DiaryEntrySource {
   }
 
   private getDate() {
-    return `${this.date.getDate()}-${this.date.getMonth()}-${this.date.getFullYear()}`;
+    return `${this.date
+      .getDate()
+      .toString()
+      .padStart(2, '0')}-${this.date
+      .getMonth()
+      .toString()
+      .padStart(2, '0')}-${this.date.getFullYear()}`;
   }
 }
 
@@ -49,6 +55,8 @@ export class Diary {
   }
 
   getEntries() {
-    return Array.from(this.entries.values());
+    return Array.from(this.entries.values()).sort(
+      (a, b) => (a.date.getTime() < b.date.getTime() ? 1 : -1),
+    );
   }
 }

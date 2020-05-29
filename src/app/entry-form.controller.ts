@@ -9,7 +9,7 @@ export class EntryFormController {
   }
   renderForm() {
     this.container.innerHTML = `
-      <form class="form">
+      <form class="form" action="#">
             <textarea class="form__text" name="content" placeholder="What's in your head?" id="" cols="30" rows="10"></textarea>
             <input class="form__title" type="text" name="title" placeholder="Title">
             <button type="submit" class="form__button">Save</button>
@@ -27,7 +27,8 @@ export class EntryFormController {
 
     this.container
       .querySelector('button[type="submit"]')
-      .addEventListener('click', () => {
+      .addEventListener('click', (event: Event) => {
+        event.preventDefault();
         this.newEntryListeners.forEach((listener) =>
           listener(
             new DiaryEntry({
