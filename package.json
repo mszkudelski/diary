@@ -10,7 +10,7 @@
     "build": "webpack --mode production",
     "start:prod": "webpack --watch --mode production | webpack-dev-server",
     "test": "jest",
-    "start:test": "jest --watch"
+    "start:test": "jest --watch --verbose false"
   },
   "devDependencies": {
     "@types/jest": "^25.2.3",
