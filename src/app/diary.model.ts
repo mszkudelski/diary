@@ -1,6 +1,6 @@
 export interface DiaryEntrySource {
   readonly title: string;
-  readonly date: Date;
+  readonly date: Date | string;
   readonly content: string;
 }
 
@@ -10,8 +10,12 @@ export class DiaryEntry implements DiaryEntrySource {
   readonly content: string;
   constructor({ title, date, content }: DiaryEntrySource) {
     this.title = title;
-    this.date = date;
+    this.date = typeof date === 'string' ? new Date(date) : date;
     this.content = content;
+  }
+
+  get dateFormatted(): string {
+    return `${this.date.getDate()}-${this.date.getMonth()}-${this.date.getFullYear()}, ${this.date.getHours()}:${this.date.getMinutes()}`;
   }
 }
 
