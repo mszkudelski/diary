@@ -43,6 +43,19 @@ test('should get cookie by name', () => {
   expect(instance.get(cookie.name)).toBe(cookie.value);
 });
 
+test('should get cookie including phrase', () => {
+  const cookie: Cookie = {
+    name: 'testCookie',
+    value: 'testValue',
+    expiration: 1000,
+  };
+
+  instance.set(cookie);
+
+  expect(instance.get(cookie.name, true)).toEqual([cookie.value]);
+  expect(instance.get('test', true)).toEqual([cookie.value]);
+});
+
 test('should return null if cookie does not exist', () => {
   const cookie: Cookie = {
     name: 'testCookie',
