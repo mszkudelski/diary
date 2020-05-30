@@ -1,4 +1,68 @@
+:root {
+  --primary: #fffaebd7;
+}
+
+@font-face {
+  font-family: font;
+  src: url('./fonts/opensans-regular-webfont.woff2') format('woff2'),
+    url('./fonts/opensans-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: font;
+  src: url('./fonts/opensans-semibold-webfont.woff2') format('woff2'),
+    url('./fonts/opensans-semibold-webfont.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 html,
 body {
-  background: antiquewhite;
+  background: var(--primary);
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  font-family: font, serif;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.content {
+  width: 500px;
+}
+
+.form {
+  margin-bottom: 20px;
+  &__text {
+    width: 100%;
+  }
+  &__row {
+    display: flex;
+  }
+  &__title {
+    flex: 3;
+  }
+  &__button {
+    flex: 1;
+  }
+}
+
+.entry {
+  margin-bottom: 15px;
+  &__title {
+    font-size: 1.3em;
+    margin: 0 0 5px 0;
+  }
+  &__subtitle {
+    font-size: 1em;
+    margin: 0 0 20px 0;
+  }
 }

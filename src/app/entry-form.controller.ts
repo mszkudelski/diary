@@ -12,7 +12,7 @@ export class EntryFormController {
       <form class="form" action="#">
             <textarea class="form__text" name="content" placeholder="What's in your head?" id="" cols="30" rows="10"></textarea>
             <p class="form__error" id="error"></p>
-            <div>
+            <div class="form__row">
               <input class="form__title" type="text" name="title" placeholder="Title">
               <button type="submit" class="form__button">Save</button>
               <button type="reset" class="form__button">Cancel</button>
