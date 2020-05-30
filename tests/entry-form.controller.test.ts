@@ -1,5 +1,6 @@
 import { EntryFormController } from '../src/app/entry-form.controller';
 import MockedFunction = jest.MockedFunction;
+import { fillForm, submitForm } from './helpers/form-helpers';
 
 let instance: EntryFormController;
 const entry = {
@@ -16,16 +17,7 @@ beforeEach(() => {
 });
 
 test('should emit submitted entry', () => {
-  (document.querySelector('input[name="title"]') as HTMLInputElement).value =
-    entry.title;
-  (document.querySelector(
-    'textarea[name="content"]',
-  ) as HTMLInputElement).value =
-    entry.content;
-
-  (document.querySelector(
-    'button[type="submit"]',
-  ) as HTMLButtonElement).click();
+  fillForm(entry, true);
 
   expect(newEntryAdded).toHaveBeenCalled();
   const functionCallArg = newEntryAdded.mock.calls[0][0];
@@ -42,9 +34,7 @@ test('should set current date as default title', () => {
   ) as HTMLInputElement).value =
     entry.content;
 
-  (document.querySelector(
-    'button[type="submit"]',
-  ) as HTMLButtonElement).click();
+  submitForm();
 
   expect(newEntryAdded).toHaveBeenCalled();
   const functionCallArg = newEntryAdded.mock.calls[0][0];
