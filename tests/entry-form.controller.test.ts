@@ -1,6 +1,7 @@
 import { EntryFormController } from '../src/app/entry-form.controller';
 import MockedFunction = jest.MockedFunction;
 import { fillForm, submitForm } from './helpers/form-helpers';
+import exp = require('constants');
 
 let instance: EntryFormController;
 const entry = {
@@ -42,4 +43,34 @@ test('should set current date as default title', () => {
   expect(functionCallArg.title).toContain(date.getDate());
   expect(functionCallArg.title).toContain(date.getMonth());
   expect(functionCallArg.title).toContain(date.getFullYear());
+});
+
+test('should empty form after successful submit', () => {
+  fillForm(entry);
+  submitForm();
+
+  expect(
+    (document.querySelector('textarea[name="content"]') as HTMLInputElement)
+      .value,
+  ).toBe('');
+  expect(
+    (document.querySelector('input[name="title"]') as HTMLInputElement).value,
+  ).toBe('');
+});
+
+test('should not empty form after failed submit', () => {
+  instance.registerNewEntryListener(() => {
+    throw new Error();
+  });
+
+  fillForm(entry);
+  submitForm();
+
+  expect(
+    (document.querySelector('textarea[name="content"]') as HTMLInputElement)
+      .value,
+  ).not.toBe('');
+  expect(
+    (document.querySelector('input[name="title"]') as HTMLInputElement).value,
+  ).not.toBe('');
 });

@@ -1,5 +1,6 @@
 :root {
   --primary: #fffaebd7;
+  --accent: #807d75;
 }
 
 @font-face {
@@ -43,15 +44,25 @@ main {
   margin-bottom: 20px;
   &__text {
     width: 100%;
+    font-size: 1em;
   }
   &__row {
     display: flex;
   }
   &__title {
     flex: 3;
+    font-size: 0.8em;
   }
   &__button {
     flex: 1;
+    font-size: 0.8em;
+    background-color: var(--accent);
+    color: white;
+    padding: 5px 10px;
+    margin-left: 10px;
+    &:first-of-type {
+      margin-left: 20px;
+    }
   }
 }
 

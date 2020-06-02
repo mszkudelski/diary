@@ -10,7 +10,7 @@ export class EntryFormController {
   renderForm() {
     this.container.innerHTML = `
       <form class="form" action="#">
-            <textarea class="form__text" name="content" placeholder="What's in your head?" id="" cols="30" rows="10"></textarea>
+            <textarea class="form__text" name="content" placeholder="What's in your head?" id="" cols="30" rows="5"></textarea>
             <p class="form__error" id="error"></p>
             <div class="form__row">
               <input class="form__title" type="text" name="title" placeholder="Title">
@@ -52,6 +52,8 @@ export class EntryFormController {
         });
         if (executionSuccess.every(Boolean)) {
           errorElement.innerHTML = '';
+          contentInput.value = '';
+          titleInput.value = '';
         }
       });
   }
